@@ -19,5 +19,16 @@ jobs:
         password: "${{ secrets.DOCKER_PASSWD }}"
     - name: Docker push
       run: docker push nbhardwaj/gha-pyapp:${GITHUB_SHA::7}
+    - name: update image tag
+      run: |
+        sed -i "s|image: nbh/gha-pyapp:.*|image: nbhardwaj/gha-pyapp:${GITHUB_SHA::7}|g" k8s/pyapp-deployment.yml
+    - name: commit the chages
+      run: |
+        git config user.email "github-actions@github.com"
+        git config user.name "GitHub Actions"
+        git add k8s/pyapp-deployment.yml
+        git commit -m "Update image tag to ${GITHUB_SHA::7} [skip ci]"
+        git push
+
 
     
