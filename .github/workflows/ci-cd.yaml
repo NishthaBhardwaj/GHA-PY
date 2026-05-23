@@ -37,7 +37,7 @@ jobs:
         tags: nbhardwaj/gha-pyapp:${{ env.SHORT_SHA }}
     - name: update image tag
       run: |
-        yq -i '.spec.template.spec.containers[0].image = "nbhardwaj/gha-pyapp:" + strenv(SHORT_SHA)' ./k8s/pyapp-deployment.yaml
+        yq -i '.spec.template.spec.containers[0].image = "nbhardwaj/gha-pyapp:" + strenv(SHORT_SHA)' k8s/pyapp-deployment.yaml
         cat k8s/pyapp-deployment.yml
     - name: commit the chages
       run: |
