@@ -21,7 +21,7 @@ jobs:
       run: docker push nbhardwaj/gha-pyapp:${GITHUB_SHA::7}
     - name: update image tag
       run: |
-        sed -i "s|image: nbh/gha-pyapp:.*|image: nbhardwaj/gha-pyapp:${GITHUB_SHA::7}|g" k8s/pyapp-deployment.yml
+        sed -i "s|image: nbhardwaj/gha-pyapp:.*|image: nbhardwaj/gha-pyapp:${GITHUB_SHA::7}|g" k8s/pyapp-deployment.yml
         cat k8s/pyapp-deployment.yml
     - name: commit the chages
       run: |
