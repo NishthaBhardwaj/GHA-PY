@@ -22,6 +22,7 @@ jobs:
     - name: update image tag
       run: |
         sed -i "s|image: nbh/gha-pyapp:.*|image: nbhardwaj/gha-pyapp:${GITHUB_SHA::7}|g" k8s/pyapp-deployment.yml
+        cat k8s/pyapp-deployment.yml
     - name: commit the chages
       run: |
         git config user.email "github-actions@github.com"
