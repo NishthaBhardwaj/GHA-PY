@@ -20,13 +20,13 @@ jobs:
         username: "${{ secrets.DOCKER_USERNAME }}"
         password: "${{ secrets.DOCKER_PASSWD }}"
     - name: Set short SHA
-      run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+      run: echo "SHORT1_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
     - name: Docker build and push
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
-        tags: nbhardwaj/gha-pyapp:${{ env.SHORT_SHA }}
+        tags: nbhardwaj/gha-pyapp:${{ env.SHORT1_SHA }}
     - name: update image tag
       run: |
         sed -i "s|image: nbhardwaj/gha-pyapp:.*|image: nbhardwaj/gha-pyapp:${GITHUB_SHA::7}|g" k8s/pyapp-deployment.yml
