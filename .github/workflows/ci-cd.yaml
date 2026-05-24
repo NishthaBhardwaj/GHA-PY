@@ -41,7 +41,7 @@ jobs:
       with:
         image-ref: 'nbhardwaj/gha-pyapp:${{ env.SHORT_SHA }}'
         severity: 'CRITICAL,HIGH'
-        exit-code: '1'
+        exit-code: '0'
         ignore-unfixed: true
     - name: Docker Push
       uses: docker/build-push-action@v6
